@@ -1,6 +1,6 @@
 public class BinaryTree<E> {
 	
-	private Nodo<E> raiz;
+	Nodo<E> raiz;
 	
 	public void addNode(String ing, String esp) {
 		Nodo<E> nodoinicial = new Nodo<E>(ing, esp);
@@ -13,7 +13,29 @@ public class BinaryTree<E> {
 			
 			while(true) {
 				padre = focus;
+				if(ing.compareTo(focus.getAss().getIngles()) < 0) {
+					focus = focus.left;
+					if(focus == null) {
+						padre.left = nodoinicial;
+						return;
+					}
+					
+				}else {
+					focus = focus.right;
+					if(focus == null) {
+						padre.right = nodoinicial;
+						return;
+					}
+				}
 			}
+		}
+	}
+	
+	public void InOrder(Nodo<E> focus) {
+		if(focus != null) {
+			InOrder(focus.left);
+			System.out.println(focus.getAss().getIngles());
+			InOrder(focus.right);
 		}
 	}
 	
